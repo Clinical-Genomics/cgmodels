@@ -51,9 +51,8 @@ def get_sample_sheet(infile: Path, sheet_type: Literal["2500", "SP", "S2", "S4"]
         # Skip the [data] header
         next(csv_file)
         csv_reader = csv.DictReader(csv_file)
-        if sheet_type == "2500":
-            samples = parse_obj_as(List[Sample], [row for row in csv_reader])
-        else:
-            samples = parse_obj_as(List[NovaSeqSample], [row for row in csv_reader])
+        raw_samples: List[dict] = [row for row in csv_reader]
+        sample_type = Sample if sheet_type == "2500" else NovaSeqSample
+        samples = parse_obj_as(List[sample_type], raw_samples)
     validate_unique_sample(samples)
     return SampleSheet(type=sheet_type, samples=samples)
