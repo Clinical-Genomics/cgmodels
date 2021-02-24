@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import List
 
 from cgmodels.exceptions import SampleSheetError
-from pydantic import BaseModel, Field, ValidationError, parse_obj_as
+from pydantic import BaseModel, Field, parse_obj_as
 from typing_extensions import Literal
 
 
