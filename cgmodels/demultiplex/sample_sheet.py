@@ -57,14 +57,3 @@ def get_sample_sheet(infile: Path, sheet_type: Literal["2500", "SP", "S2", "S4"]
             samples = parse_obj_as(List[NovaSeqSample], [row for row in csv_reader])
     validate_unique_sample(samples)
     return SampleSheet(type=sheet_type, samples=samples)
-
-
-if __name__ == "__main__":
-    infile = Path(
-        "/Users/mans.magnusson/PycharmProjects/cgmodels/tests/fixtures/SampleSheet2500_dup.csv"
-    )
-    try:
-        print(get_sample_sheet(infile=infile, sheet_type="2500"))
-    except SampleSheetError as err:
-        print(err.message)
-        raise err
