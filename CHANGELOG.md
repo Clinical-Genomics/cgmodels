@@ -13,6 +13,15 @@ Try to use the following format:
 ### Changed
 ### Fixed
 
+## [0.2.0]
+### Added
+
+- Workflow for publish to pypi
+- Workflow for CI
+- Workflow for changelog reminder
+- Model for the crunchy metadata file
+
+
 ## [0.1.0]
 ### Added
 - Models for SampleSheets
