@@ -1,5 +1,5 @@
 import datetime
-from typing import Dict
+from typing import Dict, List
 
 import pytest
 from cgmodels.crunchy.metadata import CrunchyFile, CrunchyMetadata
@@ -24,3 +24,14 @@ def test_crunchy_file_schema_malformed_date(file_info: Dict[str, str]):
     with pytest.raises(ValidationError):
         # THEN assert that a validation error is raised
         CrunchyFile(**file_info)
+
+
+def test_crunchy_metadata(file_info: Dict[str, str]):
+    # GIVEN some file metadata in a list
+    metadata: List[Dict[str, str]] = [file_info]
+
+    # WHEN creating a metadata object
+    metadata_obj = CrunchyMetadata(files=metadata)
+
+    # THEN assert that it has been converted as expected
+    assert isinstance(metadata_obj.files, list)
