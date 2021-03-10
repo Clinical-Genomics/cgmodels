@@ -26,12 +26,11 @@ def test_crunchy_file_schema_malformed_date(file_info: Dict[str, str]):
         CrunchyFile(**file_info)
 
 
-def test_crunchy_metadata(file_info: Dict[str, str]):
+def test_crunchy_metadata(metadata_info: List[Dict[str, str]]):
     # GIVEN some file metadata in a list
-    metadata: List[Dict[str, str]] = [file_info]
 
     # WHEN creating a metadata object
-    metadata_obj = CrunchyMetadata(files=metadata)
+    metadata_obj = CrunchyMetadata(files=metadata_info)
 
     # THEN assert that it has been converted as expected
     assert isinstance(metadata_obj.files, list)
