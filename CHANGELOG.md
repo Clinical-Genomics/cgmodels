@@ -13,10 +13,14 @@ Try to use the following format:
 ### Changed
 ### Fixed
 
-## [0.2.1]
+## [0.2.2]
 ### Fixed
 
 - So that not all files in crunchy metadata need `checksum` and `algorithm`
+
+## [0.2.1]
+
+- This got lost :)
 
 ## [0.2.0]
 ### Added
