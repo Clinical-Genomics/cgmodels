@@ -1,4 +1,5 @@
 import datetime
+import json
 from typing import Dict, List
 
 import pytest
@@ -14,6 +15,33 @@ def test_crunchy_file_schema(file_info: Dict[str, str]):
 
     # THEN assert that it has been converted as expected
     assert isinstance(file_obj.updated, datetime.date)
+
+
+def test_date_conversion_dict(file_info: Dict[str, str]):
+    # GIVEN some file info with a date in string format
+    assert isinstance(file_info["updated"], str)
+    # GIVEN a file object
+    file_obj = CrunchyFile(**file_info)
+
+    # WHEN converting the file object to a dict
+    file_obj_dict: dict = file_obj.dict()
+
+    # THEN assert that the updated date is a datetime object
+    assert isinstance(file_obj_dict["updated"], datetime.date)
+
+
+def test_date_conversion_json(file_info: Dict[str, str]):
+    # GIVEN some file info with a date in string format
+    # GIVEN a file object from the file info
+    file_obj = CrunchyFile(**file_info)
+
+    # WHEN converting the file object to a dict
+    file_obj_dict: dict = json.loads(file_obj.json())
+
+    # THEN assert that the updated date is a datetime object
+    assert isinstance(file_obj_dict["updated"], str)
+    # THEN assert that the date was converted back to the same string as the original
+    assert file_obj_dict["updated"] == file_info["updated"]
 
 
 def test_crunchy_file_schema_malformed_date(file_info: Dict[str, str]):
