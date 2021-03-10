@@ -5,6 +5,15 @@
 Library that work as an interface between services at Clinical Genomics. 
 In most cases where multiple services needs access to a common API, those models should be defined here.
 
+## Usage
+
+Currently **cgmodels** support contracts for the following applications:
+
+- crunchy
+- demultiplex
+
+## Installation
+
 ### Pypi
 
 ```
