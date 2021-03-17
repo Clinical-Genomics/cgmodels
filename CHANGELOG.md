@@ -13,6 +13,11 @@ Try to use the following format:
 ### Changed
 ### Fixed
 
+## [0.3.0]
+### Added
+
+- Base class for sample and headers to facilitate creation of sample sheets
+
 ## [0.2.2]
 ### Fixed
 
