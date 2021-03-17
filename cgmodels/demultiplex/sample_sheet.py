@@ -1,4 +1,5 @@
 import csv
+from copy import deepcopy
 from pathlib import Path
 from typing import List
 
@@ -6,8 +7,57 @@ from cgmodels.exceptions import SampleSheetError
 from pydantic import BaseModel, Field, parse_obj_as
 from typing_extensions import Literal
 
+SAMPLE_SHEET_HEADER = [
+    "FCID",
+    "Lane",
+    "SampleID",
+    "SampleRef",
+    "index",
+    "SampleName",
+    "Control",
+    "Recipe",
+    "Operator",
+    "Project",
+]
+
+NOVASEQ_HEADER = deepcopy(SAMPLE_SHEET_HEADER)
+NOVASEQ_HEADER.extend(("index2"))
+
+# This is a map from the headers to the keys to simplify creation of sample sheets
+HEADER_MAP = {
+    "FCID": "flow_cell",
+    "Lane": "lane",
+    "SampleID": "sample_id",
+    "SampleRef": "reference",
+    "index": "index",
+    "index2": "second_index",
+    "SampleName": "sample_name",
+    "Control": "control",
+    "Recipe": "recipe",
+    "Operator": "operator",
+    "Project": "project",
+}
+
+
+class BaseSample(BaseModel):
+    """This model is used when creating sample sheets"""
+
+    flow_cell: str
+    lane: int
+    sample_id: str
+    reference: str
+    index: str
+    second_index: str = None
+    sample_name: str
+    control: str
+    recipe: str
+    operator: str
+    project: str
+
 
 class Sample(BaseModel):
+    """This model is used when parsing/validating existing sample sheets"""
+
     flow_cell: str = Field(..., alias="FCID")
     lane: int = Field(..., alias="Lane")
     sample_id: str = Field(..., alias="SampleID")
@@ -21,6 +71,8 @@ class Sample(BaseModel):
 
 
 class NovaSeqSample(Sample):
+    """This model is used when parsing/validating existing novaseq sample sheets"""
+
     second_index: str = Field(..., alias="index2")
 
 
