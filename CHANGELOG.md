@@ -13,6 +13,11 @@ Try to use the following format:
 ### Changed
 ### Fixed
 
+
+## [0.3.1]
+### Added
+- Pipeline class definition for communication between cg and hermes
+
 ## [0.3.0]
 ### Added
 
