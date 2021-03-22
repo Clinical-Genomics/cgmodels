@@ -14,7 +14,7 @@ Try to use the following format:
 ### Fixed
 
 
-## [0.3.1]
+## [0.4.0]
 ### Added
 - Pipeline class definition for communication between cg and hermes
 
