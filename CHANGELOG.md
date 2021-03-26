@@ -13,6 +13,9 @@ Try to use the following format:
 ### Changed
 ### Fixed
 
+## [0.4.1]
+### Fixed
+- Small bug in `demultiplex/get_sample_sheet`
 
 ## [0.4.0]
 ### Added
