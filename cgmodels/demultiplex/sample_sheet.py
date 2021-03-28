@@ -115,19 +115,46 @@ def validate_samples_unique_per_lane(samples: List[Sample]) -> None:
         validate_unique_sample(lane_samples)
 
 
+def get_raw_samples(sample_sheet: str) -> List[Dict[str, str]]:
+    sample_sheet_rows: List[str] = sample_sheet.split("\n")
+    header: List[str] = []
+    raw_samples: List[Dict[str, str]] = []
+    for line in sample_sheet_rows:
+        # Skip empty lines
+        if not len(line) > 5:
+            continue
+        # Check if we are on the header row
+        line = line.strip()
+        if line.startswith("FCID"):
+            header = line.split(",")
+            continue
+        # Skip rows until header is found
+        if not header:
+            continue
+        raw_samples.append(dict(zip(header, line.split(","))))
+    if not header:
+        message = "Could not find header in sample sheet"
+        LOG.warning(message)
+        raise SampleSheetError(message)
+    if not raw_samples:
+        message = "Could not find any samples in sample sheet"
+        LOG.warning(message)
+        raise SampleSheetError(message)
+    return raw_samples
+
+
 def get_sample_sheet(
-    sample_sheet: IO[AnyStr], sheet_type: Literal["2500", "SP", "S2", "S4"]
+    sample_sheet: str, sheet_type: Literal["2500", "SP", "S2", "S4"]
 ) -> SampleSheet:
     """Parse and validate a sample sheet
 
     return the information as a SampleSheet object
     """
     # Skip the [data] header
-    next(sample_sheet)
-    raw_samples: List[dict] = [row for row in csv.DictReader(sample_sheet)]
+    raw_samples: List[Dict[str, str]] = get_raw_samples(sample_sheet)
     sample_type = Sample if sheet_type == "2500" else NovaSeqSample
     samples = parse_obj_as(List[sample_type], raw_samples)
-    validate_unique_sample(samples)
+    validate_samples_unique_per_lane(samples)
     return SampleSheet(type=sheet_type, samples=samples)
 
 
@@ -137,6 +164,8 @@ def get_sample_sheet_from_file(
     """Parse and validate a sample sheet from file"""
     with open(infile, "r") as csv_file:
         # Skip the [data] header
-        sample_sheet: SampleSheet = get_sample_sheet(sample_sheet=csv_file, sheet_type=sheet_type)
+        sample_sheet: SampleSheet = get_sample_sheet(
+            sample_sheet=csv_file.read(), sheet_type=sheet_type
+        )
 
     return sample_sheet
