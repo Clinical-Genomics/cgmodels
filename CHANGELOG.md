@@ -13,6 +13,15 @@ Try to use the following format:
 ### Changed
 ### Fixed
 
+## [0.5.0]
+### Changed [demultiplexing]
+- Allow sample ids to be duplicated if not in same lane
+  
+### Added
+- Functionality to parse sample sheet from string or file with different functions
+- Functionality to parse sample sheets with more complicated headers
+
+
 ## [0.4.1]
 ### Fixed
 - Small bug in `demultiplex/get_sample_sheet`
