@@ -18,7 +18,7 @@ master a new release is created.
 1. Check in the PR if the change is a minor, mayor or patch: ![Version][pr-version]
 1. Make sure you are on `main` (`git checkout main`)
 1. Bump the package version with poetry like: `poetry version pathch|minor|mayor` and commit the changes
-1. Bump version according to step 1 with git, example: `git tag 0.2.0`
+1. Bump version according to step 1 with git, example: `git tag -a 0.2.0 -m "Fix another thing"`
 1. Push the commit and the tags: 
     - `git push`
     - `git push --tag`
