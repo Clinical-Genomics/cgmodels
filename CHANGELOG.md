@@ -13,6 +13,10 @@ Try to use the following format:
 ### Changed
 ### Fixed
 
+## [0.6.0]
+### Changed [cg]
+- Adds demultiplex to pipeline options
+
 ## [0.5.0]
 ### Changed [demultiplexing]
 - Allow sample ids to be duplicated if not in same lane
