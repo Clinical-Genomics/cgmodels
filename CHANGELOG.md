@@ -13,6 +13,11 @@ Try to use the following format:
 ### Changed
 ### Fixed
 
+## [0.7.0]
+### Changed [cg]
+- Adds spring to pipeline options
+- Adds rsync to pipeline options
+
 ## [0.6.0]
 ### Changed [cg]
 - Adds demultiplex to pipeline options
