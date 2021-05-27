@@ -15,3 +15,5 @@ class Pipeline(StrEnum):
     MIP_RNA: str = "mip-rna"
     SARS_COV_2: str = "sars-cov-2"
     DEMULTIPLEX: str = "demultiplex"
+    SPRING: str = "spring"
+    RSYNC: str = "rsync"
