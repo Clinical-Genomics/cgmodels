@@ -13,6 +13,10 @@ Try to use the following format:
 ### Changed
 ### Fixed
 
+## [0.8.0]
+### Added
+Sample sheet validation models for both bcl2fastq and dragen
+
 ## [0.7.0]
 ### Changed [cg]
 - Adds spring to pipeline options
