@@ -62,14 +62,14 @@ class Sample(BaseModel):
 
     flow_cell: str = Field(..., alias="FCID")
     lane: int = Field(..., alias="Lane")
-    sample_id: str
+    sample_id: str = Field(..., alias="SampleID")
     reference: str = Field(..., alias="SampleRef")
     index: str = Field(..., alias="index")
     sample_name: str = Field(..., alias="SampleName")
     control: str = Field(..., alias="Control")
     recipe: str = Field(..., alias="Recipe")
     operator: str = Field(..., alias="Operator")
-    project: str
+    project: str = Field(..., alias="Project")
 
 
 class NovaSeqSample(Sample):
