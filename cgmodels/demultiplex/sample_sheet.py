@@ -93,6 +93,14 @@ class SampleSheet(BaseModel):
     samples: List[Sample]
 
 
+class SampleSheetBcl2Fastq(SampleSheet):
+    samples: List[NovaSeqSampleBcl2Fastq]
+
+
+class SampleSheetDragen(SampleSheet):
+    samples: List[NovaSeqSampleDragen]
+
+
 def validate_unique_sample(samples: List[Sample]) -> None:
     """Validate that each sample only exists once"""
     sample_ids: set = set()
