@@ -169,9 +169,11 @@ def get_sample_sheet(
     return the information as a SampleSheet object
     """
     # Skip the [data] header
+    breakpoint()
     novaseqsample = {"bcl2fastq": NovaSeqSampleBcl2Fastq, "dragen": NovaSeqSampleDragen}
     raw_samples: List[Dict[str, str]] = get_raw_samples(sample_sheet)
     sample_type = Sample if sheet_type == "2500" else novaseqsample[bcl_converter]
+    breakpoint()
     samples = parse_obj_as(List[sample_type], raw_samples)
     validate_samples_unique_per_lane(samples)
     return SampleSheet(type=sheet_type, samples=samples)
@@ -181,9 +183,14 @@ def get_sample_sheet_from_file(
     infile: Path, sheet_type: Literal["2500", "SP", "S2", "S4"], bcl_converter: str
 ) -> SampleSheet:
     """Parse and validate a sample sheet from file"""
+    breakpoint()
     with open(infile, "r") as csv_file:
         # Skip the [data] header
-        sample_sheet: SampleSheet = get_sample_sheet(
+        # sample_sheet: SampleSheet = get_sample_sheet(
+        #     sample_sheet=csv_file.read(), sheet_type=sheet_type, bcl_converter=bcl_converter
+        # )
+
+        sample_sheet = get_sample_sheet(
             sample_sheet=csv_file.read(), sheet_type=sheet_type, bcl_converter=bcl_converter
         )
 
