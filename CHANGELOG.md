@@ -13,6 +13,10 @@ Try to use the following format:
 ### Changed
 ### Fixed
 
+## [0.8.1]
+### Fixed
+fix unbumped pyproject.toml
+
 ## [0.8.0]
 ### Added
 Sample sheet validation models for both bcl2fastq and dragen
