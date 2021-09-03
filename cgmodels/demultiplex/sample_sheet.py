@@ -1,12 +1,12 @@
-import csv
 import logging
 from copy import deepcopy
 from pathlib import Path
-from typing import IO, AnyStr, Dict, List
+from typing import Dict, List
 
-from cgmodels.exceptions import SampleSheetError
 from pydantic import BaseModel, Field, parse_obj_as
 from typing_extensions import Literal
+
+from cgmodels.exceptions import SampleSheetError
 
 SAMPLE_SHEET_HEADER = [
     "FCID",
@@ -78,9 +78,27 @@ class NovaSeqSample(Sample):
     second_index: str = Field(..., alias="index2")
 
 
+class NovaSeqSampleBcl2Fastq(NovaSeqSample):
+    sample_id: str = Field(..., alias="SampleID")
+    project: str = Field(..., alias="Project")
+
+
+class NovaSeqSampleDragen(NovaSeqSample):
+    sample_id: str = Field(..., alias="Sample_ID")
+    project: str = Field(..., alias="Sample_Project")
+
+
 class SampleSheet(BaseModel):
     type: str
     samples: List[Sample]
+
+
+class SampleSheetBcl2Fastq(SampleSheet):
+    samples: List[NovaSeqSampleBcl2Fastq]
+
+
+class SampleSheetDragen(SampleSheet):
+    samples: List[NovaSeqSampleDragen]
 
 
 def validate_unique_sample(samples: List[Sample]) -> None:
@@ -144,28 +162,29 @@ def get_raw_samples(sample_sheet: str) -> List[Dict[str, str]]:
 
 
 def get_sample_sheet(
-    sample_sheet: str, sheet_type: Literal["2500", "SP", "S2", "S4"]
+    sample_sheet: str, sheet_type: Literal["2500", "SP", "S2", "S4"], bcl_converter: str
 ) -> SampleSheet:
     """Parse and validate a sample sheet
 
     return the information as a SampleSheet object
     """
     # Skip the [data] header
+    novaseqsample = {"bcl2fastq": NovaSeqSampleBcl2Fastq, "dragen": NovaSeqSampleDragen}
     raw_samples: List[Dict[str, str]] = get_raw_samples(sample_sheet)
-    sample_type = Sample if sheet_type == "2500" else NovaSeqSample
+    sample_type = Sample if sheet_type == "2500" else novaseqsample[bcl_converter]
     samples = parse_obj_as(List[sample_type], raw_samples)
     validate_samples_unique_per_lane(samples)
     return SampleSheet(type=sheet_type, samples=samples)
 
 
 def get_sample_sheet_from_file(
-    infile: Path, sheet_type: Literal["2500", "SP", "S2", "S4"]
+    infile: Path, sheet_type: Literal["2500", "SP", "S2", "S4"], bcl_converter: str
 ) -> SampleSheet:
     """Parse and validate a sample sheet from file"""
     with open(infile, "r") as csv_file:
         # Skip the [data] header
         sample_sheet: SampleSheet = get_sample_sheet(
-            sample_sheet=csv_file.read(), sheet_type=sheet_type
+            sample_sheet=csv_file.read(), sheet_type=sheet_type, bcl_converter=bcl_converter
         )
 
     return sample_sheet
