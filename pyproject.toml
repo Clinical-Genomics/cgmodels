@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cgmodels"
-version = "0.7.0"
+version = "v0.8.0"
 description = "Models used at clinical genomics"
 authors = ["moonso <mans.magnusson@scilifelab.se>"]
 readme = "README.md"
