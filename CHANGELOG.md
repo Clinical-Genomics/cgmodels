@@ -1,4 +1,6 @@
 # Change Log
+
+<!---
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
@@ -12,6 +14,11 @@ Try to use the following format:
 ### Added
 ### Changed
 ### Fixed
+-->
+
+## [0.9.0]
+### Changed [cg]
+- Adds Balsamic-UMI to pipeline options
 
 ## [0.8.1]
 ### Fixed
