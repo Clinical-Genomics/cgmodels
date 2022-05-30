@@ -16,6 +16,11 @@ Try to use the following format:
 ### Fixed
 -->
 
+## [0.9.1]
+### Changed [cg]
+- Adds BALSAMIC-QC to pipeline options
+
+
 ## [0.9.0]
 ### Changed [cg]
 - Adds Balsamic-UMI to pipeline options
@@ -40,7 +45,7 @@ Sample sheet validation models for both bcl2fastq and dragen
 ## [0.5.0]
 ### Changed [demultiplexing]
 - Allow sample ids to be duplicated if not in same lane
-  
+
 ### Added
 - Functionality to parse sample sheet from string or file with different functions
 - Functionality to parse sample sheets with more complicated headers
