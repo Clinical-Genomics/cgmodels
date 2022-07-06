@@ -16,6 +16,7 @@ class Pipeline(StrEnum):
     MICROSALT: str = "microsalt"
     MIP_DNA: str = "mip-dna"
     MIP_RNA: str = "mip-rna"
+    RNAFUSION: str = "rnafusion"
     RSYNC: str = "rsync"
     SARS_COV_2: str = "sars-cov-2"
     SPRING: str = "spring"
