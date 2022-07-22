@@ -16,10 +16,13 @@ Try to use the following format:
 ### Fixed
 -->
 
-## [0.9.1]
+## [0.10.2]
+### Changed [cg]
+- Adds BALSAMIC-PON to pipeline options
+
+## [0.10.1]
 ### Changed [cg]
 - Adds BALSAMIC-QC to pipeline options
-
 
 ## [0.9.0]
 ### Changed [cg]
