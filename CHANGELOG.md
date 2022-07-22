@@ -16,6 +16,10 @@ Try to use the following format:
 ### Fixed
 -->
 
+## [0.11.0]
+### Added [cg]
+- Adds RNAFUSION to pipeline options
+
 ## [0.10.2]
 ### Changed [cg]
 - Adds BALSAMIC-PON to pipeline options
