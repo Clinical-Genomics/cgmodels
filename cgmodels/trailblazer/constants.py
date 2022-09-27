@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class AnalysisTypes(Enum):
+class AnalysisTypes(str, Enum):
     WGS: str = "wgs"
     WES: str = "wes"
     TGS: str = "tgs"
