@@ -17,7 +17,6 @@ Try to use the following format:
 -->
 
 ## [0.12.0]
-
 ### Added [cg]
 - Adds taxprofiler to pipeline options
 ## [0.11.0]
