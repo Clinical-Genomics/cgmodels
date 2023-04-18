@@ -21,3 +21,4 @@ class Pipeline(StrEnum):
     RSYNC: str = "rsync"
     SARS_COV_2: str = "sars-cov-2"
     SPRING: str = "spring"
+    TAXPROFILER: str = "taxprofiler"
