@@ -6,4 +6,5 @@ class AnalysisTypes(str, Enum):
     WES: str = "wes"
     TGS: str = "tgs"
     RNA: str = "rna"
+    WTS: str = "wts"
     OTHER: str = "other"
