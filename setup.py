@@ -13,7 +13,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="cgmodels",
-    version="v0.10.6",
+    version="v0.10.7",
     description="",
     long_description=long_description,
     long_description_content_type="text/markdown",
